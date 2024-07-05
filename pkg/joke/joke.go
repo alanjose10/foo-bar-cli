@@ -1,11 +1,17 @@
 package joke
 
 import (
+	"encoding/json"
 	"io"
 	"net/http"
 )
 
 const API_URL = "https://icanhazdadjoke.com/"
+
+type JokeResponse struct {
+	Id   string `json:"id"`
+	Joke string `json:"joke"`
+}
 
 func GetRandomJoke() (string, error) {
 
@@ -14,7 +20,7 @@ func GetRandomJoke() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	req.Header.Add("Accept", "text/plain")
+	req.Header.Add("Accept", "application/json")
 	resp, err := client.Do(req)
 	if err != nil {
 		return "", err
@@ -25,7 +31,7 @@ func GetRandomJoke() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	responseString := string(responseBytes)
-	return responseString, nil
-
+	var jokeJson JokeResponse
+	json.Unmarshal(responseBytes, &jokeJson)
+	return jokeJson.Joke, nil
 }
