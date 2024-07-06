@@ -21,6 +21,7 @@ func GetRandomJoke() (string, error) {
 		return "", err
 	}
 	req.Header.Add("Accept", "application/json")
+	req.Header.Add("User-Agent", "foo-bar cli")
 	resp, err := client.Do(req)
 	if err != nil {
 		return "", err
