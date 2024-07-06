@@ -10,7 +10,7 @@ A cli written in cobra to do random stuff
 - [ ] `time` - prints time
 - [ ] `movies` - fetch movie details
 - [ ] `password` - generate password
-- [ ] `ip` - fetch ip details
+- [x] `ip` - fetch ip details
 
 
 ## Run

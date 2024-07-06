@@ -10,10 +10,13 @@ type IpApiResponse struct {
 	Ip string `json:"ip"`
 }
 
-const API_URL = "https://api.ipify.org"
+const defaultApiUrl = "https://api.ipify.org"
 
-func GetMyIp() (string, error) {
-	resp, err := http.Get(fmt.Sprintf("%s?format=json", API_URL))
+func GetMyIp(apiUrl string) (string, error) {
+	if apiUrl == "" {
+		apiUrl = defaultApiUrl
+	}
+	resp, err := http.Get(fmt.Sprintf("%s?format=json", apiUrl))
 	if err != nil {
 		return "", err
 	}
