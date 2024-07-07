@@ -14,9 +14,6 @@ var rootCmd = &cobra.Command{
 	Long: `stringer is a super fancy CLI written in Go using the Cobra CLI Framework
 	
 	Check out the sub commands to perform random fun things`,
-	Run: func(cmd *cobra.Command, args []string) {
-
-	},
 }
 
 func Execute() {
